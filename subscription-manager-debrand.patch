@@ -1,0 +1,73 @@
+diff -Naur subscription-manager-1.27.18.orig/etc-conf/rhsm-icon.desktop.in subscription-manager-1.27.18.debrand/etc-conf/rhsm-icon.desktop.in
+--- subscription-manager-1.27.18.orig/etc-conf/rhsm-icon.desktop.in	2021-02-18 05:55:39.035895432 +0300
++++ subscription-manager-1.27.18.debrand/etc-conf/rhsm-icon.desktop.in	2021-03-24 00:43:26.233292918 +0300
+@@ -1,6 +1,6 @@
+ 
+ [Desktop Entry]
+-_Name=Red Hat Subscription Validity Applet
++_Name=Subscription Validity Applet
+ Icon=subscription-manager
+ Exec=rhsm-icon
+ Terminal=false
+diff -Naur subscription-manager-1.27.18.orig/etc-conf/subscription-manager-cockpit.desktop.in subscription-manager-1.27.18.debrand/etc-conf/subscription-manager-cockpit.desktop.in
+--- subscription-manager-1.27.18.orig/etc-conf/subscription-manager-cockpit.desktop.in	2021-02-18 05:55:39.035895432 +0300
++++ subscription-manager-1.27.18.debrand/etc-conf/subscription-manager-cockpit.desktop.in	2021-03-24 00:43:45.609663355 +0300
+@@ -1,5 +1,5 @@
+ [Desktop Entry]
+-_Name=Red Hat Subscription Manager
++_Name=Subscription Manager
+ Icon=subscription-manager
+ Type=Application
+ Exec=/usr/libexec/cockpit-desktop /cockpit/@localhost/subscriptions/index.html
+diff -Naur subscription-manager-1.27.18.orig/etc-conf/subscription-manager-gui.desktop.in subscription-manager-1.27.18.debrand/etc-conf/subscription-manager-gui.desktop.in
+--- subscription-manager-1.27.18.orig/etc-conf/subscription-manager-gui.desktop.in	2021-02-18 05:55:39.035895432 +0300
++++ subscription-manager-1.27.18.debrand/etc-conf/subscription-manager-gui.desktop.in	2021-03-24 00:43:16.151860329 +0300
+@@ -1,5 +1,5 @@
+ [Desktop Entry]
+-_Name=Red Hat Subscription Manager
++_Name=Subscription Manager
+ Icon=subscription-manager
+ Exec=subscription-manager-gui
+ Terminal=false
+diff -Naur subscription-manager-1.27.18.orig/src/dnf-plugins/subscription-manager.py subscription-manager-1.27.18.debrand/src/dnf-plugins/subscription-manager.py
+--- subscription-manager-1.27.18.orig/src/dnf-plugins/subscription-manager.py	2021-02-18 05:55:38.960062621 +0300
++++ subscription-manager-1.27.18.debrand/src/dnf-plugins/subscription-manager.py	2021-03-24 00:45:55.599044136 +0300
+@@ -47,11 +47,11 @@
+ )
+ 
+ not_registered_warning = _("""
+-This system is not registered to Red Hat Subscription Management. You can use subscription-manager to register.
++This system is not registered to Subscription Management. You can use subscription-manager to register.
+ """)
+ 
+ no_subs_warning = _("""
+-This system is registered to Red Hat Subscription Management, but is not receiving updates. You can use \
++This system is registered to Subscription Management, but is not receiving updates. You can use \
+ subscription-manager to assign subscriptions.
+ """)
+ 
+diff -Naur subscription-manager-1.27.18.orig/src/subscription_manager/migrate/migrate.py subscription-manager-1.27.18.debrand/src/subscription_manager/migrate/migrate.py
+--- subscription-manager-1.27.18.orig/src/subscription_manager/migrate/migrate.py	2021-02-18 05:55:38.971979206 +0300
++++ subscription-manager-1.27.18.debrand/src/subscription_manager/migrate/migrate.py	2021-03-24 00:45:36.979918648 +0300
+@@ -279,8 +279,7 @@
+             if self.options.five_to_six:
+                 msgs = [_("This system appears to already be registered to Satellite 6.")]
+             else:
+-                msgs = [_("This system appears to already be registered to Red Hat Subscription Management.")]
+-                msgs.append(_("Please visit https://access.redhat.com/management/consumers/%s to view the profile details.") % identity.uuid)
++                msgs = [_("This system appears to already be registered to Subscription Management.")]
+             system_exit(1, msgs)
+ 
+         try:
+diff -Naur subscription-manager-1.27.18.orig/src/subscription_manager/repolib.py subscription-manager-1.27.18.debrand/src/subscription_manager/repolib.py
+--- subscription-manager-1.27.18.orig/src/subscription_manager/repolib.py	2021-02-18 05:55:38.973062531 +0300
++++ subscription-manager-1.27.18.debrand/src/subscription_manager/repolib.py	2021-03-24 00:44:17.617615991 +0300
+@@ -87,7 +87,7 @@
+     @staticmethod
+     def warning_message(enabled_yum_plugins):
+         message = _('The yum/dnf plugins: %s were automatically enabled for the benefit of '
+-                    'Red Hat Subscription Management. If not desired, use '
++                    'Subscription Management. If not desired, use '
+                     '"subscription-manager config --rhsm.auto_enable_yum_plugins=0" to '
+                     'block this behavior.') % ', '.join(enabled_yum_plugins)
+         return message

@@ -1,0 +1,16 @@
+diff -Nurp subscription-manager-1.27.11.orig/src/subscription_manager/repofile.py subscription-manager-1.27.11/src/subscription_manager/repofile.py
+--- subscription-manager-1.27.11.orig/src/subscription_manager/repofile.py	2020-07-28 11:06:10.000000000 -0500
++++ subscription-manager-1.27.11/src/subscription_manager/repofile.py	2020-08-05 16:48:00.911709258 -0500
+@@ -368,11 +368,7 @@ class RepoFileBase(object):
+         Try to create new repo file.
+         :return: None
+         """
+-        self.create_dir_path()
+-        if self.path_exists(self.path) or not self.manage_repos:
+-            return
+-        with open(self.path, 'w') as f:
+-            f.write(self.REPOFILE_HEADER)
++        pass
+ 
+     def fix_content(self, content):
+         return content
